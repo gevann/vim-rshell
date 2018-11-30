@@ -1,0 +1,30 @@
+*rshell.txt* Make new files includes new directories
+
+Author:  Graeme Nathan
+License: Same terms as Vim itself (see |license|)
+
+INTRODUCTION                                    *rshell*
+
+This plugin provides a function for use in your `.vimrc` file, named Rshell.
+Rshell takes two parameters, a name and a command. It then creates a set of
+E, S, and V versions of the command given where E is for the current buffer,
+S is in a new split, and V is in a new vertical split.
+e.g.
+
+`call Rshell('curl', 'curl -s <args>')` would create three functions:
+ - Ecurl
+ - Scurl
+ - Vcurl
+These could be used as `:Scurl 'string-to-pass-to-curl'`, and would then dump
+the output into a new split buffer.
+In order to use the command in your vimrc file you must source the plugin first,
+because normally plugins are sourced after vimrc and you will get error messages
+about the RShell function not being defined. To do this call `runtime plugin/rshell.vim`
+before you call RShell the first time.
+
+*RShell*
+RShell          Given parameters *name*, and *cmd*, creates three versions
+                of a function that calls out to *cmd*, named E<name>, S<name>,
+                and V<name>. The E version will output the results of command
+                into the current buffer, the S version into a new split, and
+                the V version into a new vertical split.
